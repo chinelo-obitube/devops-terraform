@@ -1,11 +1,11 @@
 
-resource "aws_instance" "devops-server" {
+resource "aws_instance" "devops" {
   ami           = var.ami
   instance_type = var.instance_type
   monitoring = true
   key_name = var.key_name
-  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
-  subnet_id = data.aws_subnet.subnet.id
+  # vpc_security_group_ids = [aws_security_group.allow_ssh.id]
+  # subnet_id = data.aws_subnet.subnet.id
   tags = {
     Name = "devops"
   }
@@ -14,7 +14,7 @@ resource "aws_instance" "devops-server" {
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
   description = "Allow SSH inbound traffic"
-  vpc_id      = data.aws_vpc.vpc.id
+  # vpc_id      = 
 
   ingress {
     cidr_blocks = [
